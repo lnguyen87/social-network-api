@@ -2,5 +2,24 @@
   "dependencies": {
     "express": "^4.17.3",
     "mongoose": "^6.2.4"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "social-network-api",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lnguyen87/social-network-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lnguyen87/social-network-api/issues"
+  },
+  "homepage": "https://github.com/lnguyen87/social-network-api#readme"
 }
