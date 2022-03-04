@@ -16,7 +16,7 @@ const userController = {
     },
 
     //get one user by id - GET request
-    getUserById(req, res) {
+    getUserById({ params }, res) {
         User.findOne({ _id: params.id })
         .populate({ 
             path: 'thoughts',
@@ -37,7 +37,7 @@ const userController = {
     }, 
 
     // create user - POST request
-    createUser(req, res) {
+    createUser({ body }, res) {
         User.create(body)
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.status(400).json(err));
