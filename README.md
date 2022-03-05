@@ -31,9 +31,10 @@ Social Network Api that allows you to create users, add thoughts, add reactions,
 ## Usage
 
 https://drive.google.com/file/d/1IYojLDuXagEwJXhjSQ1GPAnfVedyISbS/view
-https://drive.google.com/file/d/1NKdZ0xTF7TXj7arFQ57_D_hX7Vf31XDN/view
-
 ![video preview](assets/part-1.gif)
+
+
+https://drive.google.com/file/d/1NKdZ0xTF7TXj7arFQ57_D_hX7Vf31XDN/view
 ![video preview](assets/part-2.gif)
 
 Instructions:
