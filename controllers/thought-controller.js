@@ -14,13 +14,14 @@ const thoughtController = {
 
     // get thought by id - GET route
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id})
+        Thought.findOne({ _id: params.thoughtId})
         .then(dbThoughtData => {
             // If no thought found, send 404
             if (!dbThoughtData) {
                 res.status(404).json({ message: 'No thought found with this id!' });
                 return;
             }
+            console.log(dbThoughtData);
             res.json(dbThoughtData);
         })
         .catch(err => {
@@ -37,6 +38,7 @@ const thoughtController = {
             return User.findOneAndUpdate(
                 { _id: params.userId },
                 { $push: { thoughts: _id } },
+                { $push: { users: _id } },
                 { new: true }
             );
         })
@@ -52,7 +54,7 @@ const thoughtController = {
 
     // update thought by id - PUT route
     updateThought({ params, body}, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+        Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true, runValidators: true })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
                 res.status(404).json({ message: 'No thought found with this id!' });
@@ -78,7 +80,7 @@ const thoughtController = {
         })
         .then(dbUserData => {
             if (!dbUserData) {
-                res.status(404).json({ message: 'No user found with this id!' });
+                res.status(404).json({ message: 'Thought Deleted!' });
                 return;
             }
             res.json(dbUserData);

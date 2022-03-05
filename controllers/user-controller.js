@@ -8,6 +8,7 @@ const userController = {
             path: 'thoughts',
             select: '-__v'
         })
+        .select('-__v')
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
@@ -22,6 +23,7 @@ const userController = {
             path: 'thoughts',
             select: '-__v'
         })
+        .select('-__v')
         .then(dbUserData => {
             // If no user found, send 404
             if (!dbUserData) {
@@ -67,7 +69,35 @@ const userController = {
             res.json(dbUserData);
         })
         .catch(err => res.status(400).json(err));
-    }
+    },
+
+    // add friend to user - POST route
+    addFriend({ params, body }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $push: {users: body } },
+            { new: true, runValidators: true }
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user found with this id!' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.json(err));
+    },
+
+    // delete friend from user - DELETE route
+    deleteFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $pull: { users: { userId: params.userId } } },
+            { new: true }
+        )
+            .then(dbUserData => res.json(dbUserData))
+            .catch(err => res.json(err));
+    },
 };
 
 module.exports = userController;
